@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="Página Principal" />
+        <item
+            android:id="@+id/meuperfil"
+            android:title="Meu Perfil"/>
+        <item
+            android:id="@+id/meuseventos"
+            android:title="Meus Eventos" />
+        <item
+            android:id="@+id/opcoes"
+            android:title="Opções" />
+
+
+    </group>
+</menu>

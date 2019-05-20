@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bakcgroundMenu">
+
+
+    <EditText
+        android:id="@+id/nomeEven"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Nome do Evento"
+        android:inputType="textPersonName"
+        android:textColorHint="@color/colorPrimary"/>
+
+    <Spinner
+        android:id="@+id/idEnde"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"/>
+
+    <EditText
+        android:id="@+id/dataEven"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Dia do Evento"
+        android:inputType="date"
+        android:textColorHint="@color/colorPrimary"/>
+
+    <Spinner
+        android:id="@+id/Categoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary" />
+
+    <EditText
+        android:id="@+id/horaEven"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Horário do Evento"
+        android:inputType="time"
+        android:textColorHint="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="enviarCadasto"
+        android:text="Cadastrar"
+        android:background="@color/colorPrimary"/>
+
+</LinearLayout>
