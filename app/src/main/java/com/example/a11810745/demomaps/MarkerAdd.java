@@ -30,27 +30,26 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity
+public class MarkerAdd extends FragmentActivity
         implements LocationListener,
         OnMapReadyCallback,
         GoogleMap.OnMyLocationButtonClickListener,
         GoogleMap.OnMyLocationClickListener,
         GoogleMap.OnMapLoadedCallback, GoogleMap.OnMarkerClickListener, DialogInterface.OnDismissListener, GoogleMap.OnMapClickListener {
 
-    public static final int MY_LOCATION_REQUEST_CODE = 1;
-    public GoogleMap mMap;
-    public boolean mapReady, permissaoOk;
-    public Location ultimaLocation;
-    public ProgressDialog progressDialog;
-    public static final LatLng Local1 = new LatLng(-23.583797, -46.645840);
-    public static final LatLng Local2 = new LatLng(-23.587605, -46.650098);
-    public static final LatLng Local3 = new LatLng(-23.588183, -46.640666);
+    private static final int MY_LOCATION_REQUEST_CODE = 1;
+    private GoogleMap mMap;
+    private boolean mapReady, permissaoOk;
+    private boolean foiClicado = false;
+    private Location ultimaLocation;
+    private ProgressDialog progressDialog;
+    private Marker marker;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_main);
+        setContentView(R.layout.activity_marker_add);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -69,7 +68,7 @@ public class MapsActivity extends FragmentActivity
         //checando a versao do dispositivo atual
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[] { Manifest.permission.ACCESS_FINE_LOCATION }, MY_LOCATION_REQUEST_CODE);
+                requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_LOCATION_REQUEST_CODE);
                 return;
             }
         }
@@ -87,9 +86,8 @@ public class MapsActivity extends FragmentActivity
         mMap.setMyLocationEnabled(true);
         mMap.setOnMyLocationButtonClickListener(this);
         mMap.setOnMyLocationClickListener(this);
-        mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
-
+        mMap.setOnMarkerClickListener(this);
     }
 
     private void permissaoGpsOk() {
@@ -97,36 +95,25 @@ public class MapsActivity extends FragmentActivity
         inicializaMapa();
     }
 
+    public void Filtro(View view) {
+        // vai pra pagina de filtro
+        Intent go = new Intent(getApplicationContext(), Filter.class);
+        startActivity(go);
 
+    }
 
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
         mapReady = true;
         inicializaMapa();
-        CameraUpdate point = CameraUpdateFactory.newLatLng(new LatLng(-23.587373, -46.644721));
-        map.moveCamera(point);
+
+
         Bitmap.Config conf = Bitmap.Config.ARGB_8888;
         Bitmap bmp = Bitmap.createBitmap(200, 50, conf);
         Canvas canvas = new Canvas(bmp);
 
-        Marker place1 = mMap.addMarker(new MarkerOptions()
-            .position(Local1)
-            .title("Local 1")
-            .snippet("Musica ao Vivo")
-            .icon(BitmapDescriptorFactory.fromResource(R.drawable.smallmarker2)));
 
-        Marker place2 = mMap.addMarker(new MarkerOptions()
-                .position(Local2)
-                .title("Local 2")
-                .snippet("Stand-Up")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.smallmarker3)));
-
-        Marker place3 = mMap.addMarker(new MarkerOptions()
-                .position(Local3)
-                .title("Local 3")
-                .snippet("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eget purus a enim lacinia imperdiet. Vestibulum ut maximus leo, vitae.")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.smallmarker1)));
     }
 
     @Override
@@ -157,30 +144,13 @@ public class MapsActivity extends FragmentActivity
     }
 
     @Override
-    public boolean onMarkerClick(Marker marker) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        // Se fosse apenas para exibir uma mensagem, nem precisaria criar um layout
-        //builder.setMessage("");
-        builder.setView(R.layout.dialogmarker);
-        builder.setTitle("Preview");
-        builder.setCancelable(true);
-        builder.setOnDismissListener(this);
-
-        AlertDialog dialog = builder.create();
-        dialog.setCanceledOnTouchOutside(true);
-        dialog.show();
-        return false;
-    }
-
-    @Override
     public void onMapLoaded() {
 
     }
 
     @Override
     public void onLocationChanged(Location location) {
-        progressDialog.dismiss();
-        ultimaLocation = location;
+
     }
 
     @Override
@@ -202,7 +172,24 @@ public class MapsActivity extends FragmentActivity
 
     @Override
     public void onMapClick(LatLng latLng) {
-
+        if (marker != null) {
+            marker.remove();
+        }
+        foiClicado = false;
+        marker = mMap.addMarker(new MarkerOptions().position(latLng));
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        if (!foiClicado) {
+            Toast.makeText(this, "Sua localidade é aqui? Clique de novo para confirmar.", Toast.LENGTH_SHORT).show();
+            foiClicado = true;
+        } else {
+            Intent intent = new Intent();
+            intent.putExtra("localidade", new String[] { Double.toString(marker.getPosition().latitude), Double.toString(marker.getPosition().longitude) });
+            setResult(RESULT_OK, intent);
+            finish();
+        }
+        return false;
+    }
 }

@@ -11,9 +11,6 @@ import com.example.a11810745.demomaps.R;
 
 public class InitialActivity extends AppCompatActivity {
 
-    private double user = 0;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,31 +18,18 @@ public class InitialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_initial);
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radio_conv:
-                if (checked)
-                    user = 1;
-                    break;
-            case R.id.radio_anf:
-                if (checked)
-                    user = 2;
-                    break;
-        }
-    }
 
     public void EntrarGeral(View view) {
         //user true -> activity do convidado
-        if(user == 1) {
+        RadioButton radio_conv = findViewById(R.id.radio_conv);
+        RadioButton radio_anf = findViewById(R.id.radio_anf);
+        if(radio_conv.isChecked()) {
             Intent go = new Intent(getApplicationContext(), Inicial_Conv.class);
             startActivity(go);
         }
         // user false -> activity do convidado
-        else if (user == 2) {
+        else if (radio_anf.isChecked()) {
             Intent go = new Intent(getApplicationContext(), Inicial_Anfi.class);
             startActivity(go);
         }

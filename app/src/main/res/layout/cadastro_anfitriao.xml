@@ -85,6 +85,18 @@
             android:layout_marginRight="35px"/>
 
         <Button
+            android:id="@+id/button3"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5px"
+            android:fontFamily="@font/quicksand_bold"
+            android:onClick="escolherLocalidade"
+            android:text="Escolher Localidade"
+            android:layout_marginLeft="35px"
+            android:textColor="@color/bakcgroundMenu" />
+
+        <Button
             android:id="@+id/button2"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"

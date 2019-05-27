@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffeb3b</color>
+    <color name="colorPrimary">#D8CD41</color>
     <color name="colorPrimaryDark">#000</color>
-    <color name="colorAccent">#ffeb3b</color>
-    <color name="textoMenu">#ffeb3b</color>
+    <color name="colorAccent">#D8CD41</color>
+    <color name="textoMenu">#D8CD41</color>
     <color name="bakcgroundMenu">#000</color>
     <color name="cinza">#9e9e9e</color>
 </resources>

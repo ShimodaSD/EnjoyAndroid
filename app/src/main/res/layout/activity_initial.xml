@@ -44,7 +44,7 @@
             android:textColor="@color/cinza"
             android:text="Convidado"
             android:layout_marginRight="20dp"
-            android:onClick="onRadioButtonClicked" android:visibility="visible"/>
+            android:visibility="visible"/>
         <RadioButton android:id="@+id/radio_anf"
             android:textSize="25dp"
             android:buttonTint="@color/textoMenu"
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Anfitrião"
-            android:onClick="onRadioButtonClicked" android:visibility="visible"/>
+            android:visibility="visible"/>
     </RadioGroup>
 
     <LinearLayout

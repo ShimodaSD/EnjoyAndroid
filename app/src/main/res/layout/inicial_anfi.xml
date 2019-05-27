@@ -33,7 +33,7 @@
             android:textSize="62px" />
 
         <EditText
-            android:id="@+id/mailConv"
+            android:id="@+id/mailAnfi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35px"
@@ -47,7 +47,7 @@
             android:textColorHint="@color/cinza" />
 
         <EditText
-            android:id="@+id/senConv"
+            android:id="@+id/senAnfi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="35px"

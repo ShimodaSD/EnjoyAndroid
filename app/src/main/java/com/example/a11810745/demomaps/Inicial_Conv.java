@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.example.a11810745.demomaps.Models.*;
 
 public class Inicial_Conv extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,47 +23,50 @@ public class Inicial_Conv extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Aguarde...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+
+
     }
 
     //LOGIN DO Convidado
-    /* public void Entrar(View view) {
+    public void Entrar(View view) {
+
+        final Convidado convidado = new Convidado();
+        EditText e_mailConv = (EditText) findViewById(R.id.mailConv);
+        EditText e_senConv = (EditText) findViewById(R.id.senConv);
+
+        convidado.mailConv = e_mailConv.getText().toString();
+        convidado.senConv = e_senConv.getText().toString();
+
         RequisicaoJson.Callback<Convidado> callback = new RequisicaoJson.Callback<Convidado>() {
 
             @Override
             public void concluido(int status, Convidado objetoRetornado, String stringErro, Exception excecaoOcorrida) {
                 progressDialog.dismiss();
 
-                // edit text to string
-                EditText e_mailConv = (EditText) findViewById(R.id.mailConv);
-                EditText e_senConv = (EditText) findViewById(R.id.senConv);
-
-                String mailConv = e_mailConv.getText().toString();
-                String senConv = e_senConv.getText().toString();
-
                 //Autenticar a semelhanca dos objetos registrados e os do banco
-                //if(objetoRetornado.mailAnfi == mailAnfi && objetoRetornado.senAnfi == senAnfi){
-                if(senConv != null){ //testar sem nada
-                    // goes to next activity
-                    Intent LoggedIn = new Intent(Inicial_Conv.this, MapsActivity.class);
-                    Inicial_Conv.this.startActivity(LoggedIn);
+                if (objetoRetornado != null) {
+                    if (objetoRetornado.senConv.equals(convidado.senConv) ){
+                        Intent LoggedIn = new Intent(Inicial_Conv.this, MainActivity.class);
+                        Inicial_Conv.this.startActivity(LoggedIn);
+
+                    }
+                    else {
+                        Toast.makeText(Inicial_Conv.this, "E-mail/senha incorreta!", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(Inicial_Conv.this, "Erro!", Toast.LENGTH_LONG).show();
                 }
             }
         };
 
         progressDialog.show();
 
-        RequisicaoJson.get(callback, "COLOCAR O NOME DO SERVER CORRETO AQUI", Convidado.class);
-    } */
-
-    //LOGIN SEM VALIDACAO
-    public void Entrar(View view) {
-        // vai pra activity do mapa
-        Intent go = new Intent(getApplicationContext(), MapsActivity.class);
-        startActivity(go);
-
+        RequisicaoJson.get(callback, "http://10.12.189.253:3000/api/convidado/obter?mailConv=" + convidado.mailConv, Convidado.class);
+        // Intent go = new Intent(getApplicationContext(), MainActivity.class);
+        // startActivity(go);
     }
 
-    //CADASTRO SEM VALIDACAO
+
     public void Cadastro(View view) {
         // vai pra activity do mapa
         Intent go = new Intent(getApplicationContext(), CadastroConvidado.class);

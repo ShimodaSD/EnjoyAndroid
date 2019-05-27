@@ -34,19 +34,23 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDZcWycXFUe-q_V8IO0z5F_l1gtSBzZa_E" />
+            android:value="AIzaSyBEQa-BPnITXd-Chr9PvCPH8kBvJ-mYbbM" />
 
         <activity
             android:name=".Inicial_Conv"
             android:label="@string/app_name"
             android:theme="@style/MeuEstilo1"></activity>
         <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"
+            android:theme="@style/MeuEstilo1">
+        </activity>
+        <activity
             android:name=".InitialActivity"
             android:label="@string/app_name"
             android:theme="@style/MeuEstilo1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -54,10 +58,6 @@
             android:name=".Inicial_Anfi"
             android:label="@string/app_name"
             android:theme="@style/MeuEstilo1"></activity>
-        <activity
-            android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"
-            android:theme="@style/MeuEstilo"></activity>
         <activity
             android:name=".Filter"
             android:label=""
@@ -77,7 +77,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/MeuEstilo1"></activity>
+        <activity
+            android:name=".MarkerAdd"
+            android:label="@string/app_name"
+            android:theme="@style/MeuEstilo1"></activity>
         <activity
             android:name=".CadastroDeEventos"
             android:label="@string/app_name"></activity>

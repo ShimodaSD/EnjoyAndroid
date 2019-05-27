@@ -26,18 +26,7 @@
         android:layout_marginLeft="35px"
         android:layout_marginRight="35px"/>
 
-    <EditText
-        android:id="@+id/dtConv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15px"
-        android:backgroundTint="@color/colorPrimary"
-        android:ems="10"
-        android:hint="Data De Nascimento"
-        android:inputType="date"
-        android:textColorHint="@color/cinza"
-        android:layout_marginLeft="35px"
-        android:layout_marginRight="35px"/>
+
 
     <Spinner
         android:id="@+id/genConv"

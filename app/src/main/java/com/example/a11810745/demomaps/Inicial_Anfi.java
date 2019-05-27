@@ -26,50 +26,48 @@ public class Inicial_Anfi extends AppCompatActivity {
     }
 
     //LOGIN DO ANFITRIAO
-    /* public void Entrar(View view) {
-        RequisicaoJson.Callback<Anfitriao> callback = new RequisicaoJson.Callback<Anfitriao>() {
+     public void Entrar(View view) {
+        final Anfitriao anfitriao = new Anfitriao();
+         EditText e_mailAnfi = (EditText) findViewById(R.id.mailAnfi);
+         EditText e_senAnfi = (EditText) findViewById(R.id.senAnfi);
 
-            @Override
-            public void concluido(int status, Anfitriao objetoRetornado, String stringErro, Exception excecaoOcorrida) {
-                progressDialog.dismiss();
+         anfitriao.mailAnfi = e_mailAnfi.getText().toString();
+         anfitriao.senAnfi = e_senAnfi.getText().toString();
 
-                // edit text to string
-                EditText e_mailAnfi = (EditText) findViewById(R.id.mailAnfi);
-                EditText e_senAnfi = (EditText) findViewById(R.id.senAnfi);
+         RequisicaoJson.Callback<Anfitriao> callback = new RequisicaoJson.Callback<Anfitriao>() {
 
-                String mailAnfi = e_mailAnfi.getText().toString();
-                String senAnfi = e_senAnfi.getText().toString();
+             @Override
+             public void concluido(int status, Anfitriao objetoRetornado, String stringErro, Exception excecaoOcorrida) {
+                 progressDialog.dismiss();
 
-                //Autenticar a semelhanca dos objetos registrados e os do banco
-                //if(objetoRetornado.mailAnfi == mailAnfi && objetoRetornado.senAnfi == senAnfi){
-                if(senAnfi != null){ //testar sem nada
-                    // goes to next activity
-                    Intent LoggedIn = new Intent(Inicial_Anfi.this, MapsActivity.class);
-                    Inicial_Anfi.this.startActivity(LoggedIn);
-                }
-            }
-        };
+                 //Autenticar a semelhanca dos objetos registrados e os do banco
+                 if (objetoRetornado != null) {
+                     if (objetoRetornado.senAnfi.equals(anfitriao.senAnfi)) {
+                         Intent LoggedIn = new Intent(Inicial_Anfi.this, MainActivity.class);
+                         Inicial_Anfi.this.startActivity(LoggedIn);
+                     }  else {
+                         //Toast.makeText(this, "E-mail/senha incorreta!", Toast.LENGTH_LONG).show();
+                        }
+
+                 }
+             }
+         };
+
+
 
         progressDialog.show();
 
-        //IP WIFI
-        //RequisicaoJson.get(callback, "", Anfitriao.class);
+            RequisicaoJson.get(callback,"http://10.12.189.253:3000/api/anfitriao/obter?mailAnfi="+anfitriao.mailAnfi,Anfitriao.class);
 
-        // IP ETHERNET
-        //RequisicaoJson.get(callback, "https://10.15.1.178/api/anfitriao", Anfitriao.class);
-    } */
 
-    //LOGIN ANFITRIAO LIXO SEM VALIDACAO NENHUMA GUSTAVO DO CEU NAO ESQUECE DE ARRUMAR ISSO OBG
-    public void Entrar(View view) {
-        // plswork
-        Intent go = new Intent(getApplicationContext(), MapsActivity.class);
-        startActivity(go);
 
-    }
+         }
+
+
+
 
     //CADASTRO SEM VALIDACAO
     public void Cadastro(View view) {
-
         // vai pra activity do mapa
         Intent go = new Intent(getApplicationContext(), CadastroAnfitriao.class);
         startActivity(go);

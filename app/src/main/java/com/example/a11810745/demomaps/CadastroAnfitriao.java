@@ -23,7 +23,7 @@ import com.example.a11810745.demomaps.Models.Anfitriao;
 public class CadastroAnfitriao extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private boolean latLngPreenchido;
-    private double latitude, longitude;
+    private String latitude, longitude;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +77,7 @@ public class CadastroAnfitriao extends AppCompatActivity implements NavigationVi
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data != null) {
-            double[] localidade = data.getDoubleArrayExtra("localidade");
+            String[] localidade = data.getStringArrayExtra("localidade");
             if (localidade != null && localidade.length == 2) {
                 latLngPreenchido = true;
                 latitude = localidade[0];
@@ -87,11 +87,11 @@ public class CadastroAnfitriao extends AppCompatActivity implements NavigationVi
     }
 
     public void escolherLocalidade(View view) {
-        Intent intent = new Intent(this, CadastroLocalActivity.class);
+        Intent intent = new Intent(this, MarkerAdd.class);
         startActivityForResult(intent, 123);
     }
 
-    public void enviarCadastro(){
+    public void enviarCadastro(View view){
         EditText c_mailAnfi = (EditText) findViewById(R.id.mailAnfi);
         EditText c_senAnfi = (EditText) findViewById(R.id.senAnfi);
         EditText c_nomAnfi = (EditText) findViewById(R.id.nomeAnfi);
@@ -100,21 +100,49 @@ public class CadastroAnfitriao extends AppCompatActivity implements NavigationVi
         String mailAnfi = c_mailAnfi.getText().toString();
         String senAnfi = c_senAnfi.getText().toString();
         String nomAnfi = c_nomAnfi.getText().toString();
-        String cpfAnfi_= c_cpfAnfi.getText().toString();
+        String cpfAnfi= c_cpfAnfi.getText().toString();
+
+        if (!latLngPreenchido) {
+            // erro!
+            return;
+        }
+        if(mailAnfi == null){
+            return;
+        }
+        if(senAnfi == null){
+            return;
+        }
+        if(nomAnfi == null){
+            return;
+        }
+        if(cpfAnfi == null){
+            return;
+        }
 
         Anfitriao anfitriao = new Anfitriao();
+        anfitriao.nomAnfi = nomAnfi;
+        anfitriao.mailAnfi = mailAnfi;
+        anfitriao.cpfAnfi = cpfAnfi;
+        anfitriao.senAnfi = senAnfi;
+        anfitriao.latAnfi = latitude;
+        anfitriao.lngAnfi = longitude;
 
         RequisicaoJson.Callback<Void> callback = new RequisicaoJson.Callback<Void>() {
             @Override
             public void concluido(int status, Void objetoRetornado, String stringErro, Exception excecaoOcorrida) {
                 if (status == 204) {
+                    Toast.makeText(CadastroAnfitriao.this, "Cadastrado com sucesso", Toast.LENGTH_LONG).show();
                     // OK!
+                    Intent LoggedIn = new Intent(CadastroAnfitriao.this, InitialActivity.class);
+                    CadastroAnfitriao.this.startActivity(LoggedIn);
                 } else {
                     Toast.makeText(CadastroAnfitriao.this, "Erro", Toast.LENGTH_SHORT).show();
                 }
             }
         };
 
-        RequisicaoJson.post(callback, "https://10.15.1.178/api/anfitriao/criar", Void.class, anfitriao);
+        RequisicaoJson.post(callback, "http://10.12.189.253:3000/api/anfitriao/criar", Void.class, anfitriao);
+
+
     }
 }

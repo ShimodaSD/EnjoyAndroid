@@ -3,7 +3,6 @@ package com.example.a11810745.demomaps.Models;
 public class Convidado {
     public int idConv;
     public String nomeConv;
-    public String dtConv;
     public String genConv;
     public String mailConv;
     public String senConv;
@@ -11,10 +10,9 @@ public class Convidado {
     public Convidado() {
     }
 
-    public Convidado(int idConv, String nomeConv, String dtConv, String genConv, String mailConv, String senConv) {
+    public Convidado(int idConv, String nomeConv, String genConv, String mailConv, String senConv) {
         this.idConv = idConv;
         this.nomeConv = nomeConv;
-        this.dtConv = dtConv;
         this.genConv = genConv;
         this.mailConv = mailConv;
         this.senConv = senConv;

@@ -6,17 +6,20 @@ public class Anfitriao {
     public String mailAnfi;
     public String cpfAnfi;
     public String senAnfi;
-    public int idLoca;
+    public String latAnfi;
+    public String lngAnfi;
 
     public Anfitriao() {
     }
 
-    public Anfitriao(int idAmfi, String nomAnfi, String mailAnfi, String cpfAnfi, String senAnfi, int idLoca) {
+
+    public Anfitriao(int idAmfi, String nomAnfi, String mailAnfi, String cpfAnfi, String senAnfi, String latAnfi, String lngAnfi) {
         this.idAmfi = idAmfi;
         this.nomAnfi = nomAnfi;
         this.mailAnfi = mailAnfi;
         this.cpfAnfi = cpfAnfi;
         this.senAnfi = senAnfi;
-        this.idLoca = idLoca;
+        this.latAnfi = latAnfi;
+        this.lngAnfi = lngAnfi;
     }
 }
