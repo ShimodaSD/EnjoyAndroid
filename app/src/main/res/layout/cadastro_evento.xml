@@ -16,13 +16,6 @@
         android:inputType="textPersonName"
         android:textColorHint="@color/colorPrimary"/>
 
-    <Spinner
-        android:id="@+id/idEnde"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"/>
-
     <EditText
         android:id="@+id/dataEven"
         android:layout_width="match_parent"
@@ -34,7 +27,7 @@
         android:textColorHint="@color/colorPrimary"/>
 
     <Spinner
-        android:id="@+id/Categoria"
+        android:id="@+id/idCate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimary"

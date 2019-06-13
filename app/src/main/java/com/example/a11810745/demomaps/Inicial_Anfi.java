@@ -43,10 +43,13 @@ public class Inicial_Anfi extends AppCompatActivity {
                  //Autenticar a semelhanca dos objetos registrados e os do banco
                  if (objetoRetornado != null) {
                      if (objetoRetornado.senAnfi.equals(anfitriao.senAnfi)) {
+                         Anfitriao.anfitriaoLogado = objetoRetornado;
+                         Convidado.convidadoLogado = null;
                          Intent LoggedIn = new Intent(Inicial_Anfi.this, MainActivity.class);
                          Inicial_Anfi.this.startActivity(LoggedIn);
                      }  else {
-                         //Toast.makeText(this, "E-mail/senha incorreta!", Toast.LENGTH_LONG).show();
+                         Toast.makeText(Inicial_Anfi.this, "E-mail/senha incorreta!", Toast.LENGTH_LONG).show();
+
                         }
 
                  }

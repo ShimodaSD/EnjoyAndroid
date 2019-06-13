@@ -23,7 +23,7 @@ import com.example.a11810745.demomaps.Models.Anfitriao;
 public class CadastroAnfitriao extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private boolean latLngPreenchido;
-    private String latitude, longitude;
+    private double latitude, longitude;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +77,7 @@ public class CadastroAnfitriao extends AppCompatActivity implements NavigationVi
         super.onActivityResult(requestCode, resultCode, data);
 
         if (data != null) {
-            String[] localidade = data.getStringArrayExtra("localidade");
+            double[] localidade = data.getDoubleArrayExtra("localidade");
             if (localidade != null && localidade.length == 2) {
                 latLngPreenchido = true;
                 latitude = localidade[0];

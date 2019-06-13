@@ -84,7 +84,8 @@
             android:theme="@style/MeuEstilo1"></activity>
         <activity
             android:name=".CadastroDeEventos"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:theme="@style/MeuEstilo1"></activity>
         <activity
             android:name=".CadastroLocalActivity"
             android:label="@string/title_activity_cadastro_local"></activity>

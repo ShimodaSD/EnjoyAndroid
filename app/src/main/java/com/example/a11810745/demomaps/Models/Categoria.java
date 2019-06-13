@@ -11,4 +11,9 @@ public class Categoria {
         this.idCate = idCate;
         this.nomCate = nomCate;
     }
+
+    @Override
+    public String toString() {
+        return nomCate;
+    }
 }

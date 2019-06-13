@@ -46,8 +46,10 @@ public class Inicial_Conv extends AppCompatActivity {
                 //Autenticar a semelhanca dos objetos registrados e os do banco
                 if (objetoRetornado != null) {
                     if (objetoRetornado.senConv.equals(convidado.senConv) ){
+                        Anfitriao.anfitriaoLogado = null;
+                        Convidado.convidadoLogado = objetoRetornado;
                         Intent LoggedIn = new Intent(Inicial_Conv.this, MainActivity.class);
-                        Inicial_Conv.this.startActivity(LoggedIn);
+                        startActivity(LoggedIn);
 
                     }
                     else {

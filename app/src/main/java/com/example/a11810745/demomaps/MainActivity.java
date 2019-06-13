@@ -33,7 +33,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.a11810745.demomaps.Models.Evento;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -77,6 +76,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -138,6 +140,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        switch (item.getItemId()){
+            case R.id.homes:
+                Intent LoggedIn = new Intent(this, MainActivity.class);
+                this.startActivity(LoggedIn);
+                break;
+            case R.id.meuperfil:
+                break;
+            case R.id.meuseventos:
+                Intent LoggedInn = new Intent(this, CadastroDeEventos.class);
+                this.startActivity(LoggedInn);
+                break;
+        }
         return true;
     }
 
@@ -217,9 +231,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Bitmap bmp = Bitmap.createBitmap(200, 50, conf);
         Canvas canvas = new Canvas(bmp);
 
+        /*RequisicaoJson.Callback<Evento[]> callback = new RequisicaoJson.Callback<Evento[]>() {
+            @Override
+            public void concluido(int status, Evento[] objetoRetornado, String stringErro, Exception excecaoOcorrida) {
+                if (objetoRetornado != null) {
+                    Evento evento = new Evento();
+                    evento.
 
 
-                Marker place1 = mMap.addMarker(new MarkerOptions()
+                } else {
+
+                }
+            }
+        };
+        RequisicaoJson.get(callback, "http://10.12.189.253:3000/api/evento/listar", Evento[].class );
+*/
+
+        Marker place1 = mMap.addMarker(new MarkerOptions()
                         .position(Local1)
                         .title("Z")
                         .snippet("Musica ao Vivo")

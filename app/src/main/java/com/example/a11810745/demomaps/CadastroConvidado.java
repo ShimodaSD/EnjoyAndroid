@@ -1,5 +1,6 @@
 package com.example.a11810745.demomaps;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -71,11 +72,13 @@ public class CadastroConvidado extends AppCompatActivity  {
             public void concluido(int status, Void objetoRetornado, String stringErro, Exception excecaoOcorrida) {
                 if (status == 204) {
                     // OK!
+                    Intent LoggedIn = new Intent(CadastroConvidado.this, InitialActivity.class);
+                    startActivity(LoggedIn);
                 } else {
                     Toast.makeText(CadastroConvidado.this, "Erro", Toast.LENGTH_SHORT).show();
                 }
             }
         };
-        RequisicaoJson.post(callback, "https://10.12.189.253/api/convidado/criar", Void.class, convidado);
+        RequisicaoJson.post(callback, "http://10.12.189.253:3000/api/convidado/criar", Void.class, convidado);
     }
 }

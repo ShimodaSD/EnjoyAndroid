@@ -1,6 +1,8 @@
 package com.example.a11810745.demomaps.Models;
 
 public class Convidado {
+    public static Convidado convidadoLogado;
+
     public int idConv;
     public String nomeConv;
     public String genConv;
